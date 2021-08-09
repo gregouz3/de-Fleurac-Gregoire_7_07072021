@@ -1,0 +1,22 @@
+{
+  "name": "de-fleurac-gregoire_7_07072021",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+       "sass": "sass --watch scss:css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gregouz3/de-Fleurac-Gregoire_7_07072021.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gregouz3/de-Fleurac-Gregoire_7_07072021/issues"
+  },
+  "homepage": "https://github.com/gregouz3/de-Fleurac-Gregoire_7_07072021#readme",
+  "dependencies": {
+    "bootstrap": "^5.0.2"
+  }
+}
