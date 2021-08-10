@@ -1,16 +1,21 @@
 import recipes from "./recipes.js";
 import Recipe from "./recipe.js";
 
-const displayRecipes = () => {
-  //console.log(recipes);
-  const recipesHmtl = document.getElementById("recipes");
-  recipesHmtl.innerHTML = "";
+const main = () => {
+  console.log(recipes);
   recipes.forEach((recipe) => {
-    const recette = new Recipe(recipe);
-    recipesHmtl.innerHTML += recette.recipeCard;
-    recette.undefinedremove;
+    displayRecipes(recipe);
   });
 };
 
+const displayRecipes = (recipe) => {
+  //console.log(recipes);
+  const recipesHmtl = document.getElementById("recipes");
+  const recette = new Recipe(recipe);
+  recipesHmtl.innerHTML += recette.recipeCard;
+  recette.undefinedremove;
+};
+
 export default displayRecipes;
-displayRecipes();
+
+main();
