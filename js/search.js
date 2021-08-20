@@ -1,5 +1,5 @@
 import recipes from "./recipes.js";
-import displayRecipes from "./index.js";
+import displayRecipe from "./index.js";
 
 const principalSearch = () => {
   const searchUser = document.getElementById("searchInput");
@@ -13,7 +13,7 @@ const principalSearch = () => {
           recipe.name.toLowerCase().match(element) ||
           recipe.description.toLowerCase().match(element)
         ) {
-          displayRecipes(recipe);
+          displayRecipe(recipe);
         } else if (
           !recipe.name.toLowerCase().match(element) &&
           !recipe.description.toLowerCase().match(element)
@@ -21,7 +21,7 @@ const principalSearch = () => {
           recipe.ingredients.forEach((el) => {
             if (el.ingredient.toLowerCase().match(element)) {
               console.log(el.ingredient);
-              displayRecipes(recipe);
+              displayRecipe(recipe);
             }
           });
         }
@@ -32,13 +32,13 @@ const principalSearch = () => {
         );
         document.getElementById("recipes").innerHTML = "";
         recipes.forEach((recipe) => {
-          displayRecipes(recipe);
+          displayRecipe(recipe);
         });
       }
     } else if (element.length === 0) {
       document.getElementById("recipes").innerHTML = "";
       recipes.forEach((recipe) => {
-        displayRecipes(recipe);
+        displayRecipe(recipe);
       });
     }
   });

@@ -3,6 +3,7 @@ import Recipe from "./recipe.js";
 
 const displayRecipes = () => {
   console.log(recipes);
+  document.getElementById("recipes").innerHTML = "";
   recipes.forEach((recipe) => {
     displayRecipe(recipe);
   });
