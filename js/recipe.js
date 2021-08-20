@@ -12,9 +12,10 @@ class Recipe {
     this.ustensils = data.ustensils;
   }
   get ingredient() {
+    this.ingredientee = [];
     this.ingredients.forEach((ingredient) => {
       const ingrediente = new Ingredient(ingredient);
-      this.ingred += ingrediente.displayIngredient;
+      this.ingredientee += ingrediente.displayIngredient;
     });
   }
   get recipeCard() {
@@ -29,7 +30,8 @@ class Recipe {
             <p>${this.time} min</p>
           </div>
           <div class="d-flex justify-content-between">
-            <ul class="ingredients">${this.ingred}
+            <ul class="ingredients">
+            ${this.ingredientee}
             </ul>
             <p>${this.description}</p>
           </div>
@@ -37,13 +39,6 @@ class Recipe {
       </div>
     </li>
     `;
-  }
-  get undefinedremove() {
-    const list = document.querySelectorAll(".ingredients");
-    list.forEach((l) => {
-      const re = l.innerHTML.replace("undefined", "");
-      l.innerHTML = re;
-    });
   }
 }
 

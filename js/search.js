@@ -30,8 +30,16 @@ const principalSearch = () => {
         alert(
           "« Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc."
         );
-        window.location.reload();
+        document.getElementById("recipes").innerHTML = "";
+        recipes.forEach((recipe) => {
+          displayRecipes(recipe);
+        });
       }
+    } else if (element.length === 0) {
+      document.getElementById("recipes").innerHTML = "";
+      recipes.forEach((recipe) => {
+        displayRecipes(recipe);
+      });
     }
   });
 };

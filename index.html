@@ -5,22 +5,53 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/main.css" />
-    <title>Document</title>
+    <title>Les Petits Plats</title>
   </head>
   <body>
-    <h1>Les Petits Plats</h1>
-    <div class="row mb-3">
-      <div class="col">
-        <input
-          class="form-control"
-          id="searchInput"
-          type="text"
-          placeholder="Search.."
-        />
-      </div>
-    </div>
     <div class="container">
-      <ul id="recipes" class="row"></ul>
+      <div class="row">
+        <h1>Les Petits Plats</h1>
+      </div>
+      <div class="row mb-3">
+        <div class="col">
+          <input
+            class="form-control"
+            id="searchInput"
+            type="text"
+            placeholder="Search principale"
+          />
+        </div>
+      </div>
+      <div class="row my-4">
+        <div class="col-2">
+          <input
+            class="form-control"
+            id="searchIngredient"
+            type="text"
+            placeholder="Search ingredients"
+          />
+        </div>
+        <div class="col-2">
+          <input
+            class="form-control"
+            id="searchAppareil"
+            type="text"
+            placeholder="Search appareil"
+          />
+        </div>
+        <div class="col-2">
+          <input
+            class="form-control"
+            id="searchUstensiles"
+            type="text"
+            placeholder="Search ustensiles"
+          />
+        </div>
+      </div>
+
+      <div class="container">
+        <ul id="recipes" class="row"></ul>
+      </div>
     </div>
     <script src="js/recipes.js" type="module"></script>
     <script src="js/index.js" type="module"></script>

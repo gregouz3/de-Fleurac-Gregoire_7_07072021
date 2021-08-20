@@ -1,21 +1,20 @@
 import recipes from "./recipes.js";
 import Recipe from "./recipe.js";
 
-const main = () => {
+const displayRecipes = () => {
   console.log(recipes);
   recipes.forEach((recipe) => {
-    displayRecipes(recipe);
+    displayRecipe(recipe);
   });
 };
 
-const displayRecipes = (recipe) => {
+const displayRecipe = (recipe) => {
   //console.log(recipes);
   const recipesHmtl = document.getElementById("recipes");
   const recette = new Recipe(recipe);
   recipesHmtl.innerHTML += recette.recipeCard;
-  recette.undefinedremove;
 };
 
-export default displayRecipes;
+export default displayRecipe;
 
-main();
+displayRecipes();
