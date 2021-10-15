@@ -5,25 +5,125 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/main.css" />
-    <title>Document</title>
+    <link rel="icon" href="./img/hatChef.png" />
+
+    <title>Les petits plats</title>
   </head>
   <body>
-    <h1>Les Petits Plats</h1>
-    <div class="row mb-3">
-      <div class="col">
-        <input
-          class="form-control"
-          id="searchInput"
-          type="text"
-          placeholder="Search.."
-        />
+    <div class="container mt-4">
+      <div class="row mb-2">
+        <div class="d-flex flex-column align-items-center">
+          <img src="./img/hatChef.png" class="logo" alt="hat chef" />
+          <h1 class="title">Les petits plats</h1>
+        </div>
+      </div>
+      <div class="row mb-5">
+        <div class="col search0 d-flex">
+          <input
+            class="form-control"
+            id="searchInput"
+            type="text"
+            placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette"
+          />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            id="logo_s0"
+            class="bi bi-search"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+            />
+          </svg>
+        </div>
+      </div>
+      <div class="container my-5">
+        <div class="accordion d-flex" id="accordionSection">
+          <div class="accordion-item mb-3">
+            <button
+              type="button"
+              class="accordion-button collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseOne"
+            >
+              <input
+                id="searchIngredient"
+                type="text"
+                placeholder="Ingredients"
+              />
+            </button>
+            <div
+              class="accordion-collapse collapse"
+              id="collapseOne"
+              data-bs-parent="#accordionSection"
+            >
+              <div class="accordion-body">
+                <div class="ingredients"></div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item mb-3">
+            <button
+              type="button"
+              class="accordion-button collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseTwo"
+            >
+              <input id="searchAppareil" type="text" placeholder="Appareil" />
+            </button>
+            <div
+              class="accordion-collapse collapse"
+              id="collapseTwo"
+              data-bs-parent="#accordionSection"
+            >
+              <div class="accordion-body">
+                <div class="appareil"></div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button
+              type="button"
+              class="accordion-button collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseThree"
+            >
+              <input
+                id="searchUstensiles"
+                type="text"
+                placeholder="Ustensiles"
+              />
+            </button>
+            <div
+              class="accordion-collapse collapse"
+              id="collapseThree"
+              data-bs-parent="#accordionSection"
+            >
+              <div class="accordion-body">
+                <div class="ustensiles"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <ul id="recipes" class="row"></ul>
       </div>
     </div>
-    <div class="container">
-      <ul id="recipes" class="row"></ul>
-    </div>
+
     <script src="js/recipes.js" type="module"></script>
     <script src="js/index.js" type="module"></script>
     <script src="js/search.js" type="module"></script>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
