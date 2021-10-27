@@ -41,7 +41,7 @@ const filter1 = (element, recipe, tab) => {
     recipe.description.toLowerCase().match(element)
   ) {
     displayRecipe(recipe);
-    tabe(recipe, tab);
+    tab.push(recipe);
   } else if (
     !recipe.name.toLowerCase().match(element) &&
     !recipe.description.toLowerCase().match(element)
@@ -50,15 +50,10 @@ const filter1 = (element, recipe, tab) => {
       if (el.ingredient.toLowerCase().match(element)) {
         console.log(el.ingredient);
         displayRecipe(recipe);
-
-        tabe(recipe, tab);
+        tab.push(recipe);
       }
     });
   }
-};
-
-const tabe = (recipe, tab) => {
-  tab.push(recipe);
 };
 
 const search2 = (tab) => {
@@ -72,7 +67,6 @@ const search2ingredients = (tab) => {
   ingrs.innerHTML = "";
   tab.forEach((tabb) => {
     tabb.ingredients.forEach((ingr) => {
-      console.log(ingr);
       ingrs.innerHTML += JSON.stringify(ingr.ingredient);
     });
   });
@@ -108,8 +102,8 @@ const search2ingredients = (tab) => {
 const search2appareils = (tab) => {
   const apps = document.querySelector(".appareil");
   apps.innerHTML = "";
+
   tab.forEach((recipe) => {
-    console.log(recipe.appliance);
     apps.innerHTML += recipe.appliance;
   });
   const searchUserAppareil = document.getElementById("searchAppareil");
@@ -141,7 +135,6 @@ const search2ustensils = (tab) => {
   usts.innerHTML = "";
   tab.forEach((tabb) => {
     tabb.ustensils.forEach((ust) => {
-      console.log(ust);
       usts.innerHTML += JSON.stringify(ust);
     });
   });
