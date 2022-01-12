@@ -1,6 +1,5 @@
 import recipes from "./recipes.js";
 import Recipe from "./recipe.js";
-import search2 from "./search.js";
 
 const displayRecipes = () => {
   console.log(recipes);
@@ -17,7 +16,6 @@ const displayRecipe = (recipe) => {
   recipesHmtl.innerHTML += recette.recipeCard;
 };
 
-export default displayRecipe;
-
 displayRecipes();
-search2(recipes);
+
+export default displayRecipe;
