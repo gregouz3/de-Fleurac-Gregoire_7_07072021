@@ -2,46 +2,20 @@ import recipes from "./recipes.js";
 import displayRecipe from "./index.js";
 
 const search = () => {
-  displayTag(recipes);
   search2(recipes);
+  displayTag(recipes);
   const searchUser = document.getElementById("searchInput");
   searchUser.addEventListener("input", (e) => {
     const element = e.target.value.toLowerCase();
     if (element.length >= 3) {
       const tab = [];
       document.getElementById("recipes").innerHTML = "";
-      /*  document.querySelector(".ingredients").innerHTML = "";
-      document.querySelector(".appareil").innerHTML = "";
-      document.querySelector(".ustensiles").innerHTML = "";
-      document.getElementById("searchAppareil").value = "";
-      document.getElementById("searchUstensiles").value = "";
-      document.getElementById("searchIngredient").value = "";
-      +close toggle*/
       recipes.filter((recipe) => filter1(element, recipe, tab));
       search2(tab);
       displayTag(tab);
     }
     error(e);
   });
-};
-
-const error = (e) => {
-  if (document.getElementById("recipes").innerHTML === "") {
-    alert(
-      "« Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc."
-    );
-    document.getElementById("recipes").innerHTML = "";
-    e.target.value = "";
-    recipes.forEach((recipe) => {
-      displayRecipe(recipe);
-    });
-    // console.log(element);
-  } else if (e.target.value.length === 0) {
-    document.getElementById("recipes").innerHTML = "";
-    recipes.forEach((recipe) => {
-      displayRecipe(recipe);
-    });
-  }
 };
 
 const filter1 = (element, recipe, tab) => {
@@ -64,17 +38,46 @@ const filter1 = (element, recipe, tab) => {
   }
 };
 
-const displayTag = (tab) => {
-  ingredients(tab);
-  appareils(tab);
-  ustensils(tab);
+const error = (e) => {
+  if (document.getElementById("recipes").innerHTML === "") {
+    alert(
+      "« Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc."
+    );
+    document.getElementById("recipes").innerHTML = "";
+    e.target.value = "";
+    recipes.forEach((recipe) => {
+      displayRecipe(recipe);
+    });
+    // console.log(element);
+  } else if (e.target.value.length === 0) {
+    document.getElementById("recipes").innerHTML = "";
+    recipes.forEach((recipe) => {
+      displayRecipe(recipe);
+    });
+  }
 };
 
 const search2 = (tab) => {
+  console.log(tab);
   search2ingredients(tab);
   search2appareils(tab);
   search2ustensils(tab);
 };
+
+const displayTag = (tab) => {
+  ingredients(tab);
+  appareils(tab);
+  ustensils(tab);
+  selectTag();
+};
+
+const selectTag = () => {
+  tagIngr();
+  tagApp();
+  tagUst();
+};
+
+/*ingredient*****************************************************/
 
 const ingredients = (tab) => {
   const ingrs = document.querySelector(".ingredients");
@@ -85,14 +88,62 @@ const ingredients = (tab) => {
       tingr.push(ingr.ingredient.toLowerCase());
     });
   });
-  console.log(tingr);
   const uTab = [...new Set(tingr)];
-  console.log(uTab);
-  uTab.forEach((el) => {
-    const ingredient = JSON.stringify(el);
+  uTab.forEach((ingr) => {
     ingrs.innerHTML += `
-        <li>${ingredient}</li>
+        <li class="ingrsC">${ingr}</li>
       `;
+  });
+};
+
+const tagIngr = () => {
+  const ingrsC = document.querySelectorAll(".ingrsC");
+  ingrsC.forEach((ingrC) => {
+    const ingrCid = ingrC.textContent.toLowerCase().replaceAll(" ", "");
+    const btnId = [...ingrCid].reverse().join("");
+    ingrC.addEventListener("click", () => {
+      console.log(btnId);
+      console.log(document.getElementById(btnId));
+      if (document.getElementById(btnId) === null) {
+        console.log(document.getElementById(btnId));
+
+        document.getElementById("tags").innerHTML += `
+          <button
+            type="button"
+            class="btn btn-primary my-3 d-flex align-items-center justify-content-between"
+            id=${btnId}
+          >
+            <p >${ingrC.textContent}</p>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-x-circle sX"
+              id=${ingrCid}
+              viewBox="0 0 16 16"
+
+            >
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+              <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+            </svg>
+          </button>`;
+        closeTagIngrs();
+      }
+    });
+  });
+};
+
+const closeTagIngrs = () => {
+  const ingrsX = document.querySelectorAll(".sX");
+  console.log(ingrsX);
+  ingrsX.forEach((ingrX) => {
+    console.log(ingrX);
+    const btnX = [...ingrX.id].reverse().join("");
+    ingrX.addEventListener("click", () => {
+      console.log(btnX);
+      document.getElementById(btnX).remove();
+    });
   });
 };
 
@@ -109,9 +160,7 @@ const search2ingredients = (tab) => {
       document.getElementById("searchUstensiles").value = "";
       document.querySelector(".appareil").innerHTML = "";
       document.querySelector(".ustensiles").innerHTML = "";
-
       document.getElementById("recipes").innerHTML = "";
-
       tab.filter((recipe) => {
         recipe.ingredients.forEach((el) => {
           if (el.ingredient.toLowerCase().match(element)) {
@@ -126,14 +175,12 @@ const search2ingredients = (tab) => {
       ingrs.innerHTML = "";
       document.querySelector(".appareil").innerHTML = "";
       document.querySelector(".ustensiles").innerHTML = "";
-
       document.getElementById("recipes").innerHTML = "";
       ut1ingRecipe.forEach((recipe) => {
         displayRecipe(recipe);
         appareils(ut1ingRecipe);
         ustensils(ut1ingRecipe);
       });
-
       const uTab = [...new Set(t1ingr)];
       console.log(uTab);
       uTab.forEach((el) => {
@@ -142,14 +189,13 @@ const search2ingredients = (tab) => {
         <li>${ingredient}</li>
       `;
       });
-      console.log(ut1ingRecipe);
       search2appareils(ut1ingRecipe);
       search2ustensils(ut1ingRecipe);
-    } else if (element.length === 0) {
-      // ingredients(tab);
     }
   });
 };
+
+/*APPAREIL******************************************************/
 
 const appareils = (tab) => {
   const apps = document.querySelector(".appareil");
@@ -159,12 +205,65 @@ const appareils = (tab) => {
     tapp.push(app.appliance.toLowerCase());
   });
   const appTab = [...new Set(tapp)];
-  console.log(appTab);
   appTab.forEach((el) => {
     const app = JSON.stringify(el);
     apps.innerHTML += `
-        <li>${app}</li>
+        <li class="appsC">${app}</li>
       `;
+  });
+};
+
+const tagApp = () => {
+  const appsC = document.querySelectorAll(".appsC");
+
+  appsC.forEach((appC) => {
+    const appCid = appC.textContent.toLowerCase().replaceAll(" ", "");
+    const btnId = [...appCid].reverse().join("");
+    const textId = "";
+    appC.addEventListener("click", () => {
+      console.log(btnId);
+
+      console.log(appC.textContent);
+      console.log(appC);
+      console.log(appsC);
+      if (!document.getElementById(btnId)) {
+        document.getElementById("tags").innerHTML += `
+          <button
+            type="button"
+            class="btn btn-primary my-3 d-flex align-items-center justify-content-between"
+            id=${btnId}
+          >
+            <p id=${textId} >${appC.textContent}</p>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-x-circle sX"
+              id=${appCid}
+              viewBox="0 0 16 16"
+
+            >
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+              <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+            </svg>
+          </button>`;
+
+        closeTagApps();
+      }
+    });
+  });
+};
+
+const closeTagApps = () => {
+  const appsX = document.querySelectorAll(".sX");
+  console.log(appsX);
+  appsX.forEach((appX) => {
+    const btnX = [...appX.id].reverse().join("");
+    appX.addEventListener("click", () => {
+      console.log(btnX);
+      document.getElementById(btnX).remove();
+    });
   });
 };
 const search2appareils = (tab) => {
@@ -209,11 +308,11 @@ const search2appareils = (tab) => {
       });
       search2ingredients(ut1appRecipe);
       search2ustensils(ut1appRecipe);
-    } else if (e.target.value.length === 0) {
-      //appareils(tab);
     }
   });
 };
+
+/*USTENSILE******************************************************/
 
 const ustensils = (tab) => {
   const usts = document.querySelector(".ustensiles");
@@ -228,11 +327,60 @@ const ustensils = (tab) => {
   ustab.forEach((el) => {
     const ust = JSON.stringify(el);
     usts.innerHTML += `
-        <li>${ust}</li>
+        <li class="ustsC">${ust}</li>
     `;
   });
 };
+const tagUst = () => {
+  const ustsC = document.querySelectorAll(".ustsC");
+  ustsC.forEach((ustC) => {
+    const ustCid = ustC.textContent.toLowerCase().replaceAll(" ", "");
+    const btnId = [...ustCid].reverse().join("");
+    ustC.addEventListener("click", () => {
+      console.log(document.getElementById(btnId));
+      if (document.getElementById(btnId) === null) {
+        console.log(document.getElementById(btnId));
 
+        document.getElementById("tags").innerHTML += `
+        <button
+          type="button"
+          class="btn btn-primary my-3 d-flex align-items-center justify-content-between"
+          id=${btnId}
+        >
+          <p >${ustC.textContent}</p>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-x-circle sX"
+            id=${ustCid}
+            viewBox="0 0 16 16"
+
+          >
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+          </svg>
+        </button>`;
+
+        closeTagUsts();
+      }
+    });
+  });
+};
+
+const closeTagUsts = () => {
+  const ustsX = document.querySelectorAll(".sX");
+  console.log(ustsX);
+  ustsX.forEach((ustX) => {
+    console.log(ustX);
+    const btnX = [...ustX.id].reverse().join("");
+    ustX.addEventListener("click", () => {
+      console.log(btnX);
+      document.getElementById(btnX).remove();
+    });
+  });
+};
 const search2ustensils = (tab) => {
   const t1Ust = [];
   const t1UstRecipe = [];
@@ -274,8 +422,6 @@ const search2ustensils = (tab) => {
       console.log(ut1UstRecipe);
       search2appareils(ut1UstRecipe);
       search2ingredients(ut1UstRecipe);
-    } else if (e.target.value.length === 0) {
-      //ustensils(tab);
     }
   });
 };

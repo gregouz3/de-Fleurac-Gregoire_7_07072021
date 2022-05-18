@@ -12,8 +12,6 @@ const search = () => {
         tab.push(recipes[i]);
         filter1(element, recipes[i], tab);
       }
-      console.log(tab);
-      console.log("tab");
     }
     error(e);
   });
