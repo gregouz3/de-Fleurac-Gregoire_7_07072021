@@ -1,59 +1,13 @@
 import recipes from "./recipes.js";
 import displayRecipe from "./index.js";
 
-<<<<<<< HEAD
-const principalSearch = () => {
-=======
 const search = () => {
   search2(recipes);
   displayTag(recipes);
->>>>>>> algo1
   const searchUser = document.getElementById("searchInput");
   searchUser.addEventListener("input", (e) => {
     const element = e.target.value.toLowerCase();
     if (element.length >= 3) {
-<<<<<<< HEAD
-      console.log(element);
-      document.getElementById("recipes").innerHTML = "";
-      recipes.filter((recipe) => {
-        if (
-          recipe.name.toLowerCase().match(element) ||
-          recipe.description.toLowerCase().match(element)
-        ) {
-          displayRecipe(recipe);
-          // searchIngredients();
-          console.log(recipe);
-
-          //second
-        } else if (
-          !recipe.name.toLowerCase().match(element) &&
-          !recipe.description.toLowerCase().match(element)
-        ) {
-          recipe.ingredients.forEach((el) => {
-            if (el.ingredient.toLowerCase().match(element)) {
-              console.log(el.ingredient);
-              displayRecipe(recipe);
-            }
-          });
-        }
-      });
-      if (document.getElementById("recipes").innerHTML === "") {
-        alert(
-          "« Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc."
-        );
-        // window.location.reload();
-        document.getElementById("recipes").innerHTML = "";
-        recipes.forEach((recipe) => {
-          displayRecipe(recipe);
-        });
-        console.log(element);
-      }
-    } else if (element.length === 0) {
-      document.getElementById("recipes").innerHTML = "";
-      recipes.forEach((recipe) => {
-        displayRecipe(recipe);
-      });
-=======
       const tab = [];
       document.getElementById("recipes").innerHTML = "";
       recipes.filter((recipe) => filter1(element, recipe, tab));
@@ -168,7 +122,6 @@ const tagIngr = () => {
               class="bi bi-x-circle sX"
               id=${ingrCid}
               viewBox="0 0 16 16"
-
             >
               <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
               <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
@@ -237,14 +190,10 @@ const search2ingredients = (tab) => {
       });
       search2appareils(ut1ingRecipe);
       search2ustensils(ut1ingRecipe);
->>>>>>> algo1
     }
   });
 };
 
-<<<<<<< HEAD
-const searchAppareil = () => {
-=======
 /*APPAREIL******************************************************/
 
 const appareils = (tab) => {
@@ -287,7 +236,6 @@ const tagApp = () => {
               class="bi bi-x-circle sX"
               id=${appCid}
               viewBox="0 0 16 16"
-
             >
               <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
               <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
@@ -317,19 +265,10 @@ const search2appareils = (tab) => {
   const t1app = [];
   const t1appRecipe = [];
   const apps = document.querySelector(".appareil");
->>>>>>> algo1
   const searchUserAppareil = document.getElementById("searchAppareil");
   searchUserAppareil.addEventListener("input", (e) => {
     const element = e.target.value.toLowerCase();
     if (element.length >= 3) {
-<<<<<<< HEAD
-      console.log(element);
-      document.getElementById("recipes").innerHTML = "";
-      recipes.filter((recipe) => {
-        if (recipe.appliance.toLowerCase().match(element)) {
-          //  displayRecipe(recipe);
-          console.log(recipe.appliance);
-=======
       apps.innerHTML = "";
       document.getElementById("searchIngredient").value = "";
       document.getElementById("searchUstensiles").value = "";
@@ -341,7 +280,6 @@ const search2appareils = (tab) => {
         if (recipe.appliance.toLowerCase().match(element)) {
           t1app.push(recipe.appliance.toLowerCase());
           t1appRecipe.push(recipe);
->>>>>>> algo1
         }
       });
       const ut1appRecipe = [...new Set(t1appRecipe)];
@@ -393,9 +331,10 @@ const tagUst = () => {
   ustsC.forEach((ustC) => {
     const ustCid = ustC.textContent.toLowerCase().replaceAll(" ", "");
     const btnIdUst = [...ustCid].reverse().join("");
+    const tabUst = [];
     ustC.addEventListener("click", () => {
       console.log(document.getElementById(btnIdUst));
-      if (!document.getElementById(btnIdUst)) {
+      if (tabUst.length == 0) {
         console.log(document.getElementById(btnIdUst));
         document.getElementById("tags").innerHTML += `
         <button
@@ -417,7 +356,7 @@ const tagUst = () => {
             <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
           </svg>
         </button>`;
-
+        tabUst.push(document.getElementById(btnIdUst));
         closeTagUsts();
       }
     });
@@ -481,45 +420,4 @@ const search2ustensils = (tab) => {
   });
 };
 
-const searchIngredients = () => {
-  const searchUserIngredient = document.getElementById("searchIngredient");
-  searchUserIngredient.addEventListener("input", (e) => {
-    const element = e.target.value.toLowerCase();
-    if (element.length >= 3) {
-      console.log(element);
-      document.getElementById("recipes").innerHTML = "";
-      recipes.filter((recipe) => {
-        recipe.ingredients.forEach((el) => {
-          if (el.ingredient.toLowerCase().match(element)) {
-            // displayRecipe(recipe);
-            console.log(el.ingredient);
-          }
-        });
-      });
-    }
-  });
-};
-
-const searchUstensils = () => {
-  const searchUserUstensils = document.getElementById("searchUstensiles");
-  searchUserUstensils.addEventListener("input", (e) => {
-    const element = e.target.value.toLowerCase();
-    if (element.length >= 3) {
-      console.log(element);
-      document.getElementById("recipes").innerHTML = "";
-      recipes.filter((recipe) => {
-        recipe.ustensils.forEach((el) => {
-          if (el.toLowerCase().match(element)) {
-            // displayRecipe(recipe);
-            console.log(el);
-          }
-        });
-      });
-    }
-  });
-};
-
-principalSearch();
-searchIngredients();
-searchAppareil();
-searchUstensils();
+search();
