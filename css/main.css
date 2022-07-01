@@ -10752,4 +10752,26 @@ textarea.form-control-lg {
   box-sizing: border-box;
 }
 
+.title {
+  color: blue;
+  font-weight: 700;
+}
+
+#searchInput {
+  height: 69px;
+  background: #e7e7e7;
+  border-radius: 5px;
+}
+
+#logo_s0 {
+  width: 30px;
+  height: 30px;
+  margin-left: -3rem;
+  margin-top: 1rem;
+}
+
+.tags {
+  width: 20%;
+}
+
 /*# sourceMappingURL=main.css.map */
