@@ -100,18 +100,18 @@ const tagIngr = () => {
   const ingrsC = document.querySelectorAll(".ingrsC");
   ingrsC.forEach((ingrC) => {
     const ingrCid = ingrC.textContent.toLowerCase().replaceAll(" ", "");
-    const btnId = [...ingrCid].reverse().join("");
+    const btnIdIngr = [...ingrCid].reverse().join("");
     ingrC.addEventListener("click", () => {
-      console.log(btnId);
-      console.log(document.getElementById(btnId));
-      if (document.getElementById(btnId) === null) {
-        console.log(document.getElementById(btnId));
+      console.log(btnIdIngr);
+      console.log(document.getElementById(btnIdIngr));
+      if (!document.getElementById(btnIdIngr)) {
+        console.log(document.getElementById(btnIdIngr));
 
         document.getElementById("tags").innerHTML += `
           <button
             type="button"
             class="btn btn-primary my-3 d-flex align-items-center justify-content-between"
-            id=${btnId}
+            id=${btnIdIngr}
           >
             <p >${ingrC.textContent}</p>
             <svg
@@ -215,23 +215,18 @@ const appareils = (tab) => {
 
 const tagApp = () => {
   const appsC = document.querySelectorAll(".appsC");
-
   appsC.forEach((appC) => {
     const appCid = appC.textContent.toLowerCase().replaceAll(" ", "");
-    const btnId = [...appCid].reverse().join("");
+    const btnIdApp = [...appCid].reverse().join("");
     const textId = "";
+    const tabApp = [];
     appC.addEventListener("click", () => {
-      console.log(btnId);
-
-      console.log(appC.textContent);
-      console.log(appC);
-      console.log(appsC);
-      if (!document.getElementById(btnId)) {
+      if (tabApp.length == 0) {
         document.getElementById("tags").innerHTML += `
           <button
             type="button"
             class="btn btn-primary my-3 d-flex align-items-center justify-content-between"
-            id=${btnId}
+            id=${btnIdApp}
           >
             <p id=${textId} >${appC.textContent}</p>
             <svg
@@ -248,7 +243,9 @@ const tagApp = () => {
               <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
             </svg>
           </button>`;
-
+        console.log(document.getElementById("btnIdApp"));
+        tabApp.push(document.getElementById("btnIdApp"));
+        console.log(tabApp);
         closeTagApps();
       }
     });
@@ -335,17 +332,16 @@ const tagUst = () => {
   const ustsC = document.querySelectorAll(".ustsC");
   ustsC.forEach((ustC) => {
     const ustCid = ustC.textContent.toLowerCase().replaceAll(" ", "");
-    const btnId = [...ustCid].reverse().join("");
+    const btnIdUst = [...ustCid].reverse().join("");
     ustC.addEventListener("click", () => {
-      console.log(document.getElementById(btnId));
-      if (document.getElementById(btnId) === null) {
-        console.log(document.getElementById(btnId));
-
+      console.log(document.getElementById(btnIdUst));
+      if (!document.getElementById(btnIdUst)) {
+        console.log(document.getElementById(btnIdUst));
         document.getElementById("tags").innerHTML += `
         <button
           type="button"
           class="btn btn-primary my-3 d-flex align-items-center justify-content-between"
-          id=${btnId}
+          id=${btnIdUst}
         >
           <p >${ustC.textContent}</p>
           <svg
@@ -356,7 +352,6 @@ const tagUst = () => {
             class="bi bi-x-circle sX"
             id=${ustCid}
             viewBox="0 0 16 16"
-
           >
             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
             <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
