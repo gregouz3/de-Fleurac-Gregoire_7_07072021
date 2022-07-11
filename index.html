@@ -6,24 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/main.css" />
     <link rel="icon" href="./img/hatChef.png" />
-
     <title>Les petits plats</title>
   </head>
   <body>
-    <div class="container mt-4">
-      <div class="row mb-2">
+    <div class="container">
+      <div class="container mt-4 mb-2">
         <div class="d-flex flex-column align-items-center">
           <img src="./img/hatChef.png" class="logo" alt="hat chef" />
           <h1 class="title">Les petits plats</h1>
         </div>
       </div>
-      <div class="row mb-5">
+      <div class="row mb-3">
         <div class="col search0 d-flex">
           <input
             class="form-control"
             id="searchInput"
             type="text"
-            placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette"
+            placeholder="Rechercher une recette"
           />
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -40,84 +39,91 @@
           </svg>
         </div>
       </div>
-      <div class="row tags d-flex" id="tags"></div>
-      <div class="container my-5">
-        <div class="accordion d-flex" id="accordionSection">
-          <div class="accordion-item mb-3">
-            <button
-              type="button"
-              class="accordion-button collapsed"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseOne"
-            >
-              <input
-                id="searchIngredient"
-                type="text"
-                placeholder="Ingredients"
-              />
-            </button>
-            <div
-              class="accordion-collapse collapse"
-              id="collapseOne"
-              data-bs-parent="#accordionSection"
-            >
-              <div class="accordion-body">
-                <div class="ingredients"></div>
-                <ul class="ingredients"></ul>
-              </div>
+
+      <div class="container">
+        <div class="tags d-flex" id="tags"></div>
+      </div>
+      <div class="accordion mb-3" id="accordionSection">
+        <div class="accordion-item--ingr">
+          <button
+            type="button"
+            class="accordion-button collapsed"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseOne"
+          >
+            <input
+              id="searchIngredient"
+              type="text"
+              placeholder="Ingredients"
+              class="inputSearch"
+            />
+          </button>
+          <div
+            class="accordion-collapse collapse"
+            id="collapseOne"
+            data-bs-parent="#accordionSection"
+          >
+            <div class="accordion-body">
+              <ul class="ingredients"></ul>
             </div>
           </div>
-          <div class="accordion-item mb-3">
-            <button
-              type="button"
-              class="accordion-button collapsed"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseTwo"
-            >
-              <input id="searchAppareil" type="text" placeholder="Appareil" />
-            </button>
-            <div
-              class="accordion-collapse collapse"
-              id="collapseTwo"
-              data-bs-parent="#accordionSection"
-            >
-              <div class="accordion-body">
-                <div class="appareil"></div>
-                <ul class="appareil"></ul>
-              </div>
+        </div>
+
+        <div class="accordion-item--app">
+          <button
+            type="button"
+            class="accordion-button collapsed"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseTwo"
+          >
+            <input
+              id="searchAppareil"
+              type="text"
+              placeholder="Appareils"
+              class="inputSearch"
+            />
+          </button>
+          <div
+            class="accordion-collapse collapse"
+            id="collapseTwo"
+            data-bs-parent="#accordionSection"
+          >
+            <div class="accordion-body">
+              <ul class="appareil"></ul>
             </div>
           </div>
-          <div class="accordion-item">
-            <button
-              type="button"
-              class="accordion-button collapsed"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseThree"
-            >
-              <input
-                id="searchUstensiles"
-                type="text"
-                placeholder="Ustensiles"
-              />
-            </button>
-            <div
-              class="accordion-collapse collapse"
-              id="collapseThree"
-              data-bs-parent="#accordionSection"
-            >
-              <div class="accordion-body">
-                <div class="ustensiles"></div>
-                <ul class="ustensiles"></ul>
-              </div>
+        </div>
+
+        <div class="accordion-item--ust">
+          <button
+            type="button"
+            class="accordion-button collapsed"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseThree"
+          >
+            <input
+              id="searchUstensiles"
+              type="text"
+              placeholder="Ustensiles"
+              class="inputSearch"
+            />
+          </button>
+          <div
+            class="accordion-collapse collapse"
+            id="collapseThree"
+            data-bs-parent="#accordionSection"
+          >
+            <div class="accordion-body">
+              <ul class="ustensiles"></ul>
             </div>
           </div>
         </div>
       </div>
 
       <div class="container">
-        <ul id="recipes" class="row"></ul>
+        <ul id="recipes"></ul>
       </div>
-
+    </div>
     <script src="js/recipes.js" type="module"></script>
     <script src="js/index.js" type="module"></script>
     <script src="js/search.js" type="module"></script>
